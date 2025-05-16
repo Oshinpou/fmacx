@@ -1,49 +1,77 @@
 <html>
 <head><style>
+    /* Header Styles - Combined with Luxten Theme */
   #headerSticker {
-  position: sticky;
-  top: 0;
-  background-color: #2d3748; /* Tailwind bg-gray-800 */
-  color: white;
-  padding: 0.5rem 1rem; /* p-2 */
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 50;
-  font-family: Arial, sans-serif;
-}
+    position: sticky;
+    top: 0;
+    background: linear-gradient(to right, #1a1a1a, #2e2e2e); /* Sleek dark gradient */
+    color: #f0f0f0;
+    padding: 10px 20px;
+    z-index: 999;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
 
-#accountStatus {
-  /* just normal text */
-}
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-#headerSticker .flex {
-  display: flex;
-  gap: 1rem; /* space-x-4 approx */
-  font-size: 0.875rem; /* text-sm */
-}
+  #accountStatus {
+    font-weight: 500;
+    font-size: 0.95rem;
+  }
 
-#headerSticker a {
-  color: white;
-  text-decoration: none;
-  cursor: pointer;
-}
+  .header-links {
+    display: flex;
+    gap: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
 
-#headerSticker a:hover {
-  text-decoration: underline;
-}
+  .header-links a {
+    color: #f0f0f0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .header-links a:hover {
+    color: #00e0ff;
+    text-decoration: underline;
+  }
+
+  @media screen and (max-width: 768px) {
+    .header-container {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    .header-links {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  }
+
+
+
 </style></head>
   <body>
 <!-- header.html -->
-<div id="headerSticker" class="sticky top-0 bg-gray-800 text-white p-2 flex justify-between items-center z-50">
-  <div id="accountStatus">Not logged in</div>
-  <div class="flex space-x-4 text-sm">
-    <a href="#" onclick="viewAccount()">Manage Account</a>
-    <a href="#" onclick="viewCart()">Cart</a>
-    <a href="#" onclick="viewOrders()">Your Orders</a>
-    <a href="#" onclick="trackOrders()">Track Orders</a>
-    <a href="login.html">Login</a>
+<div id="headerSticker">
+  <div class="header-container">
+    <div id="accountStatus">Not logged in</div>
+    <div class="header-links">
+      <a href="#" onclick="viewAccount()">Manage Account</a>
+      <a href="#" onclick="viewCart()">Cart</a>
+      <a href="#" onclick="viewOrders()">Your Orders</a>
+      <a href="#" onclick="trackOrders()">Track Orders</a>
+      <a href="login.html">Login</a>
+    </div>
   </div>
 </div>
+
 </body>
 </html>
