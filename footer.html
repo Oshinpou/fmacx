@@ -41,6 +41,7 @@
   <a href="#" onclick="Activity ()"> Activity</a>
   <a href="#" onclick="History()"> History</a>
   <a href="#" onclick="showNotifications()">Notifications</a>
+  <a href="#" onclick="support()"> support</a>
   <a href="seller-login.html">Seller Login</a>
 </div>
 
@@ -61,6 +62,12 @@
     const user = localStorage.getItem("fmacx_user");
     if (!user) return alert("Login required to view notifications.");
     alert("No new notifications.");
+  }
+
+  function showNotifications() {
+    const user = localStorage.getItem("fmacx_user");
+    if (!user) return alert("Login required to get support.");
+    alert("live online support.");
   }
 </script>
 </body></html>
