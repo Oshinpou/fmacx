@@ -38,14 +38,20 @@
 </head>
 <body>
 <div class="footer-sticker">
-  
-  <a href="#" onclick="showLoginHistory()"> History</a>
+  <a href="#" onclick="Activity ()"> Activity</a>
+  <a href="#" onclick="History()"> History</a>
   <a href="#" onclick="showNotifications()">Notifications</a>
   <a href="seller-login.html">Seller Login</a>
 </div>
 
 <script>
-  function showLoginHistory() {
+  function History() {
+    const user = localStorage.getItem("fmacx_user");
+    if (!user) return alert("Login required to view Activity.");
+    alert("Showing account activity.");
+  }
+  
+  function History() {
     const user = localStorage.getItem("fmacx_user");
     if (!user) return alert("Login required to view login history.");
     alert("Showing login history (dummy)");
