@@ -77,6 +77,20 @@
     </div>
   </div>
 
+ <!-- Inside body -->
+<div id="back-placeholder"></div>
+<div id="footer-placeholder"></div>
+
+<!-- Script to load them -->
+<script>
+  fetch("backbutton.html")
+    .then(res => res.text())
+    .then(data => document.getElementById("back-placeholder").innerHTML = data);
+
+  fetch("footer.html")
+    .then(res => res.text())
+    .then(data => document.getElementById("footer-placeholder").innerHTML = data);
+</script>
   <script>
     const gun = Gun();
     const SEA = Gun.SEA;
