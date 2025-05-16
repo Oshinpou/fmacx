@@ -17,16 +17,15 @@
 <body class="bg-gray-100">
 
   <!-- Header Sticker -->
-  <div id="headerSticker" class="sticky top-0 bg-gray-800 text-white p-2 flex justify-between items-center z-50">
-    <div id="accountStatus">Not logged in</div>
-    <div class="flex space-x-4 text-sm">
-      <a href="#" onclick="viewAccount()">Manage Account</a>
-      <a href="#" onclick="viewCart()">Cart</a>
-      <a href="#" onclick="viewOrders()">Your Orders</a>
-      <a href="#" onclick="trackOrders()">Track Orders</a>
-      <a href="#">Login</a>
-    </div>
-  </div>
+  <div id="header-placeholder"></div>
+
+<script>
+  fetch("header.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("header-placeholder").innerHTML = data;
+    });
+</script>
 
   <!-- Login Box -->
   <div class="max-w-lg mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg">
