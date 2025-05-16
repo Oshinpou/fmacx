@@ -92,7 +92,22 @@ fetch('options.html')
   });
 </script>
   
+<!-- Include Advertisement Sliders -->
+<div id="ads-section">
+  <!-- ads.html content will be injected here -->
+</div>
 
+<script>
+  // Load ads.html into the ads-section div
+  fetch('ads.html')
+    .then(response => response.text())
+    .then(html => {
+      document.getElementById('ads-section').innerHTML = html;
+    })
+    .catch(error => {
+      console.error('Failed to load ads.html:', error);
+    });
+</script>
  <!-- Inside body -->
 <div id="back-placeholder"></div>
 <div id="footer-placeholder"></div>
