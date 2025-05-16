@@ -1,0 +1,55 @@
+<!-- options.html --><link rel="stylesheet" href="filters-style.css"><button class="filters-toggle-btn" onclick="toggleFilters()">
+  <span class="filter-icon">☰</span> Filters / Sort
+</button><div class="filters-wrapper closed">
+  <h3>Search & Filter Options</h3>  <!-- Search Bar --><label for="search">Search by Product Name</label> <input type="text" id="search" placeholder="Enter product name...">
+
+  <!-- Category Selection --><label for="category">Select Category</label> <select id="category"> <option>Beauty</option> <option>Fashion</option> <option>Electronics</option> <option>Home & Living</option> </select>
+
+  <!-- Subcategory --><label for="subcategory">Select Subcategory</label> <select id="subcategory"> <option>Skincare</option> <option>Makeup</option> <option>Furniture</option> <option>Decor</option> </select>
+
+  <!-- Sort Options --><label for="sort">Sort By</label> <select id="sort"> <option>Price: Low to High</option> <option>Price: High to Low</option> <option>A-Z</option> <option>New Arrivals</option> <option>Discount</option> </select>
+
+  <!-- Filter Options --><label for="price-filter">Price Range</label> <select id="price-filter"> <option>Below ₹1000</option> <option>₹1000 - ₹5000</option> <option>₹5000 - ₹10000</option> <option>Above ₹10000</option> </select>
+
+<label for="color-filter">Color</label> <select id="color-filter"> <option>Red</option> <option>Black</option> <option>White</option> <option>Gold</option> </select>
+
+<label for="discount-filter">Discount</label> <select id="discount-filter"> <option>10% or more</option> <option>25% or more</option> <option>50% or more</option> <option>75% or more</option> </select>
+
+  <!-- Shipping Address -->  <h3>Shipping Address</h3>
+  <label for="country">Country</label>
+  <select id="country">
+    <option>India</option>
+    <option>USA</option>
+    <option>UK</option>
+    <option>Germany</option>
+  </select><label for="state">State</label> <input type="text" id="state" placeholder="Enter State">
+
+<label for="region">Region</label> <input type="text" id="region" placeholder="Enter Region">
+
+<label for="area">Area</label> <input type="text" id="area" placeholder="Enter Area">
+
+<label for="landmark">Landmark</label> <input type="text" id="landmark" placeholder="Enter Landmark">
+
+<label for="pincode">Pin Code</label> <input type="text" id="pincode" placeholder="Enter Pin Code">
+
+<label for="building">Building/Plot No</label> <input type="text" id="building" placeholder="Enter Building or Plot No">
+
+<label for="house">House/Building Name</label> <input type="text" id="house" placeholder="Enter Name">
+
+<label for="apartment">Apartment/Colony</label> <input type="text" id="apartment" placeholder="Enter Colony or Apartment">
+
+<label for="shipping-phone">Phone Number (with country code)</label> <select id="shipping-phone"> <option>+91 India</option> <option>+1 USA</option> <option>+44 UK</option> <option>+49 Germany</option> </select> <input type="text" placeholder="Enter Phone Number">
+
+  <!-- Delivery Check --><label for="check-delivery">Check Delivery by Pincode</label> <input type="text" id="check-delivery" placeholder="Enter Pincode to Check">
+
+  <!-- Active Filter Tags -->  <div class="filter-tags">
+    <span onclick="this.remove()">₹1000 - ₹5000 ✕</span>
+    <span onclick="this.remove()">Red ✕</span>
+  </div>
+</div><script>
+  function toggleFilters() {
+    const wrapper = document.querySelector('.filters-wrapper');
+    wrapper.classList.toggle('open');
+    wrapper.classList.toggle('closed');
+  }
+</script>
