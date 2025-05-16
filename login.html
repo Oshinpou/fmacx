@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FMACX Login</title>
+  <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment/min/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/umd/uuidv4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/validator@13.9.0/validator.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="account.js" defer></script>
+</head>
+<body class="bg-white text-gray-900">
+  <div class="max-w-md mx-auto mt-10 p-5 border shadow-lg rounded-lg space-y-6">
+    <h2 class="text-2xl font-bold">Create Account</h2>
+    <input type="text" id="username" placeholder="Username" class="w-full border p-2" />
+    <input type="email" id="email" placeholder="Email" class="w-full border p-2" />
+    <input type="text" id="phone" placeholder="+91XXXXXXXXXX" class="w-full border p-2" />
+    <input type="password" id="password" placeholder="Password" class="w-full border p-2" />
+    <input type="password" id="confirm" placeholder="Confirm Password" class="w-full border p-2" />
+    <button onclick="createAccount()" class="w-full bg-black text-white p-2">Create Account</button>
+
+    <h2 class="text-xl font-semibold">Login</h2>
+    <input type="text" id="loginUser" placeholder="Username" class="w-full border p-2" />
+    <input type="password" id="loginPass" placeholder="Password" class="w-full border p-2" />
+    <button onclick="loginAccount()" class="w-full bg-green-600 text-white p-2">Login</button>
+
+    <h2 class="text-xl font-semibold">Recover Password</h2>
+    <input type="text" id="recoverUser" placeholder="Username" class="w-full border p-2" />
+    <input type="email" id="recoverEmail" placeholder="Email" class="w-full border p-2" />
+    <input type="text" id="recoverPhone" placeholder="Phone" class="w-full border p-2" />
+    <button onclick="recoverPassword()" class="w-full bg-yellow-500 text-white p-2">Recover Password</button>
+
+    <a href="index.html" class="block text-center mt-4 text-blue-600">Go Back to Website</a>
+  </div>
+</body>
+</html>
