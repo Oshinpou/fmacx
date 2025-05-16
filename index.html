@@ -108,7 +108,16 @@ fetch('options.html')
       console.error('Failed to load ads.html:', error);
     });
 </script>
- <!-- Inside body -->
+
+  <!-- Load Products Section -->
+<div id="load-products-section"></div>
+<script>
+  fetch('load.html')
+    .then(res => res.text())
+    .then(html => document.getElementById('load-products-section').innerHTML = html);
+</script>
+  
+  <!-- Inside body -->
 <div id="back-placeholder"></div>
 <div id="footer-placeholder"></div>
 
