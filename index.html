@@ -15,7 +15,21 @@
   <!-- Header Sticker -->
   <div id="header-placeholder"></div>
 
+<!-- Inside body -->
+<div id="back-placeholder"></div>
+<div id="footer-placeholder"></div>
+
+<!-- Script to load them -->
 <script>
+  fetch("backbutton.html")
+    .then(res => res.text())
+    .then(data => document.getElementById("back-placeholder").innerHTML = data);
+
+  fetch("footer.html")
+    .then(res => res.text())
+    .then(data => document.getElementById("footer-placeholder").innerHTML = data);
+</script>
+  <script>
   fetch("header.html")
     .then(res => res.text())
     .then(data => {
