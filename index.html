@@ -62,6 +62,16 @@
   <div class="p-8">
     <h1 class="text-3xl font-bold">Welcome to FMACX Marketplace</h1>
     <p class="mt-4 text-lg">Enjoy shopping with your global peer-to-peer account.</p>
+ <!-- Include Written Sections -->
+<div id="written-sections"></div>
+
+<script>
+  fetch('written.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('written-sections').innerHTML = data;
+    });
+</script>
   </div>
 
 <!-- Include Options Section -->
