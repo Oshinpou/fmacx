@@ -68,13 +68,65 @@
       </div>
     </form>
 
-    <!-- Extra Links -->
-    <div class="mt-6 text-center text-sm text-gray-600 space-y-2">
-      <button onclick="signup()" class="underline">Create New Account</button><br>
-      <button onclick="recoverPassword()" class="underline">Forgot Password?</button><br>
-      <button onclick="recoverUsername()" class="underline">Forgot Username?</button><br>
-      <button onclick="goBack()" class="text-blue-600 underline mt-2">Go Back to Previous Page</button>
-    </div>
+    <!-- Forms Section -->
+<div id="forms-container" class="mt-6 text-sm text-gray-600 space-y-4">
+
+  <!-- Signup Form -->
+  <div id="signup-form" style="display:none;">
+    <h2 class="text-lg font-semibold mb-2">Sign Up</h2>
+    <input type="text" placeholder="Username" class="input" /><br>
+    <input type="email" placeholder="Email" class="input" /><br>
+    <select class="input">
+      <option value="+91">+91 (India)</option>
+      <option value="+1">+1 (USA)</option>
+      <option value="+44">+44 (UK)</option>
+      <option value="+61">+61 (Australia)</option>
+    </select>
+    <input type="tel" placeholder="Phone Number" class="input" /><br>
+    <input type="password" placeholder="Password" class="input" /><br>
+    <input type="password" placeholder="Confirm Password" class="input" /><br>
+    <button class="btn">Submit</button>
+  </div>
+
+  <!-- Recover Password Form -->
+  <div id="recover-password-form" style="display:none;">
+    <h2 class="text-lg font-semibold mb-2">Recover Password</h2>
+    <input type="text" placeholder="Username" class="input" /><br>
+    <input type="email" placeholder="Email" class="input" /><br>
+    <select class="input">
+      <option value="+91">+91 (India)</option>
+      <option value="+1">+1 (USA)</option>
+      <option value="+44">+44 (UK)</option>
+      <option value="+61">+61 (Australia)</option>
+    </select>
+    <input type="tel" placeholder="Phone Number" class="input" /><br>
+    <button class="btn">Submit</button>
+  </div>
+
+  <!-- Recover Username Form -->
+  <div id="recover-username-form" style="display:none;">
+    <h2 class="text-lg font-semibold mb-2">Recover Username</h2>
+    <input type="email" placeholder="Email" class="input" /><br>
+    <select class="input">
+      <option value="+91">+91 (India)</option>
+      <option value="+1">+1 (USA)</option>
+      <option value="+44">+44 (UK)</option>
+      <option value="+61">+61 (Australia)</option>
+    </select>
+    <input type="tel" placeholder="Phone Number" class="input" /><br>
+    <input type="password" placeholder="Password" class="input" /><br>
+    <button class="btn">Submit</button>
+  </div>
+
+  <!-- Toggle Links -->
+  <div class="text-center space-y-2">
+    <button class="underline" onclick="document.getElementById('signup-form').style.display='block'; document.getElementById('recover-password-form').style.display='none'; document.getElementById('recover-username-form').style.display='none';">Create New Account</button><br>
+    <button class="underline" onclick="document.getElementById('recover-password-form').style.display='block'; document.getElementById('signup-form').style.display='none'; document.getElementById('recover-username-form').style.display='none';">Forgot Password?</button><br>
+    <button class="underline" onclick="document.getElementById('recover-username-form').style.display='block'; document.getElementById('signup-form').style.display='none'; document.getElementById('recover-password-form').style.display='none';">Forgot Username?</button><br>
+    <button class="text-blue-600 underline" onclick="history.back()">Go Back to Previous Page</button>
+  </div>
+</div>
+    
   </div>
 
  <!-- Inside body -->
