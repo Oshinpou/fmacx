@@ -64,137 +64,26 @@
     <p class="mt-4 text-lg">Enjoy shopping with your global peer-to-peer account.</p>
   </div>
 
- <div class="section-container">
-  <h3>Shipping & Address</h3>
-
-  <!-- Currency Selector -->
-  <label for="currency">Select Currency</label>
-  <select id="currency">
-    <option value="INR">INR - Indian Rupee</option>
-    <option value="USD">USD - US Dollar</option>
-    <option value="EUR">EUR - Euro</option>
-    <option value="JPY">JPY - Yen</option>
-  </select>
-
-  <!-- Country Selector -->
-  <label for="country">Select Country</label>
-  <select id="country">
-    <option value="IN">India</option>
-    <option value="US">United States</option>
-    <option value="UK">United Kingdom</option>
-    <option value="JP">Japan</option>
-    <option value="DE">Germany</option>
-    <!-- Add more countries as needed -->
-  </select>
-
-  <!-- Delivery Check by PIN -->
-  <label for="pincode">Check Delivery by PIN Code</label>
-  <input type="text" id="pincode" placeholder="Enter PIN Code">
-
-  <!-- Full Address -->
-  <label>Shipping Address Details</label>
-  <input type="text" placeholder="Country">
-  <input type="text" placeholder="State">
-  <input type="text" placeholder="Region">
-  <input type="text" placeholder="Area">
-  <input type="text" placeholder="Landmark">
-  <input type="text" placeholder="PIN Code">
-  <input type="text" placeholder="Building / Plot No.">
-  <input type="text" placeholder="House / Building Name">
-  <input type="text" placeholder="Apartment / Colony Name">
-
-  <!-- Reference Phone -->
-  <label>Reference Phone Number with Country Code</label>
-  <select>
-    <option value="+91">+91 (India)</option>
-    <option value="+1">+1 (USA)</option>
-    <option value="+44">+44 (UK)</option>
-    <option value="+81">+81 (Japan)</option>
-  </select>
-  <input type="tel" placeholder="Phone Number">
+<!-- Include Options Section -->
+<div id="product-options">
+  <!-- Options will be loaded here -->
 </div>
 
-<div class="section-container">
-  <h3>Search Products</h3>
-  <input type="text" placeholder="Search by product name...">
+<script>
+// Load options.html into #product-options
+fetch('options.html')
+  .then(response => response.text())
+  .then(html => {
+    document.getElementById('product-options').innerHTML = html;
+  })
+  .catch(error => {
+    console.error('Failed to load options.html:', error);
+    document.getElementById('product-options').innerHTML = '<p style="color:red;">Unable to load options panel.</p>';
+  });
+</script>
+  
 
-  <label>Choose Category</label>
-  <select>
-    <option>All Categories</option>
-    <option>Cosmetics</option>
-    <option>Furniture</option>
-    <option>Jewelry</option>
-    <option>Accessories</option>
-  </select>
-
-  <label>Subcategory</label>
-  <select>
-    <option>All</option>
-    <option>Skincare</option>
-    <option>Haircare</option>
-    <option>Face Tools</option>
-  </select>
-
-  <label>Sort By</label>
-  <select>
-    <option>New Arrivals</option>
-    <option>Price: Low to High</option>
-    <option>Price: High to Low</option>
-    <option>A to Z</option>
-    <option>Discount %</option>
-  </select>
-</div>
-
-<div class="section-container">
-  <h3>Apply Filters</h3>
-  <div class="filters-section">
-    <!-- Price Range -->
-    <div>
-      <label>Price</label>
-      <select>
-        <option>All</option>
-        <option>Under ₹1000</option>
-        <option>₹1000 - ₹5000</option>
-        <option>₹5000 - ₹10000</option>
-        <option>Above ₹10000</option>
-      </select>
-    </div>
-
-    <!-- Color Filter -->
-    <div>
-      <label>Color</label>
-      <select>
-        <option>All</option>
-        <option>Black</option>
-        <option>White</option>
-        <option>Beige</option>
-        <option>Gold</option>
-        <option>Multi</option>
-      </select>
-    </div>
-
-    <!-- Discount Filter -->
-    <div>
-      <label>Discount</label>
-      <select>
-        <option>All</option>
-        <option>10% or more</option>
-        <option>25% or more</option>
-        <option>50% or more</option>
-        <option>70% or more</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="filter-tags">
-    <!-- Example active filters -->
-    <span onclick="this.remove()">₹1000 - ₹5000 ✕</span>
-    <span onclick="this.remove()">Black ✕</span>
-    <span onclick="this.remove()">25%+ Off ✕</span>
-  </div>
-</div>
-
-  <!-- Inside body -->
+ <!-- Inside body -->
 <div id="back-placeholder"></div>
 <div id="footer-placeholder"></div>
 
