@@ -144,67 +144,7 @@
     .then(data => document.getElementById("footer-placeholder").innerHTML = data);
 </script>
   <script>
-    const gun = Gun();
-    const SEA = Gun.SEA;
-
-    document.getElementById("loginForm").addEventListener("submit", async function(e) {
-      e.preventDefault();
-
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-
-      gun.get("users").get(username).once(async (data) => {
-        if (data && data.password) {
-          try {
-            const decrypted = await SEA.decrypt(data.password, password);
-            if (decrypted) {
-              document.getElementById("headerSticker").querySelector("#accountStatus").textContent = `Logged in as ${username}`;
-              window.location.href = "index.html";
-            } else {
-              document.getElementById("errorMessage").classList.remove("hidden");
-            }
-          } catch {
-            document.getElementById("errorMessage").classList.remove("hidden");
-          }
-        } else {
-          document.getElementById("errorMessage").classList.remove("hidden");
-        }
-      });
-    });
-
-    function signup() {
-      window.location.href = "signup.html";
-    }
-
-    function recoverPassword() {
-      const info = prompt("Enter your email or phone number to recover password:");
-      if (info) alert("Recovery link sent. (Simulated)");
-    }
-
-    function recoverUsername() {
-      const info = prompt("Enter your email or phone number to recover username:");
-      if (info) alert("We’ve sent your username. (Simulated)");
-    }
-
-    function goBack() {
-      window.history.back();
-    }
-
-    function viewAccount() {
-      alert("Manage Account");
-    }
-
-    function viewCart() {
-      alert("Viewing Cart");
-    }
-
-    function viewOrders() {
-      alert("Your Orders");
-    }
-
-    function trackOrders() {
-      alert("Track Orders");
-    }
+    
   </script>
 </body>
 </html>
