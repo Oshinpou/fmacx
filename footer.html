@@ -1,0 +1,55 @@
+<!-- footer.html -->
+<style>
+  .footer-sticker {
+    position: sticky;
+    bottom: 0;
+    z-index: 999;
+    background-color: #111827; /* Tailwind's gray-900 */
+    color: #f9fafb; /* Tailwind's gray-50 */
+    padding: 0.75rem 1rem;
+    display: flex;
+    justify-content: space-around;
+    font-size: 0.875rem;
+    font-family: sans-serif;
+  }
+
+  .footer-sticker a {
+    text-decoration: none;
+    color: #f9fafb;
+  }
+
+  .footer-sticker a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 640px) {
+    .footer-sticker {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer-sticker a {
+      margin: 0.25rem 0;
+    }
+  }
+</style>
+
+<div class="footer-sticker">
+  <a href="#" onclick="showLoginHistory()">Login History</a>
+  <a href="#" onclick="showNotifications()">Notifications</a>
+  <a href="seller-login.html">Seller Login</a>
+</div>
+
+<script>
+  function showLoginHistory() {
+    const user = localStorage.getItem("fmacx_user");
+    if (!user) return alert("Login required to view login history.");
+    alert("Showing login history (dummy)");
+  }
+
+  function showNotifications() {
+    const user = localStorage.getItem("fmacx_user");
+    if (!user) return alert("Login required to view notifications.");
+    alert("No new notifications.");
+  }
+</script>
