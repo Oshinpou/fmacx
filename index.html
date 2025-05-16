@@ -13,22 +13,15 @@
 </head>
 <body class="bg-gray-50 text-gray-900">
   <!-- Header Sticker -->
-  <div id="header-sticker" class="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-50">
-    <div class="font-bold text-xl">FMACX</div>
-    <div id="header-options" class="space-x-4">
-      <span id="account-status"></span>
-      <button onclick="gotoLogin()" class="text-blue-600">Login</button>
-      <button onclick="logoutAccount()" class="text-red-600 hidden" id="logoutBtn">Logout</button>
-      <button onclick="toggleOptions()" class="text-gray-600">Account ▼</button>
-      <div id="account-options" class="hidden absolute right-5 bg-white shadow p-2 mt-2 rounded border space-y-2">
-        <div>Manage Account</div>
-        <div>Favorites</div>
-        <div>Your Orders</div>
-        <div>Track Orders</div>
-        <div>Support</div>
-      </div>
-    </div>
-  </div>
+  <div id="header-placeholder"></div>
+
+<script>
+  fetch("header.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("header-placeholder").innerHTML = data;
+    });
+</script>
 
   <!-- Marketplace content -->
   <div class="p-8">
