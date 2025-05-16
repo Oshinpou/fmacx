@@ -1,5 +1,39 @@
 <html>
-<body>
+<head><style>
+  #headerSticker {
+  position: sticky;
+  top: 0;
+  background-color: #2d3748; /* Tailwind bg-gray-800 */
+  color: white;
+  padding: 0.5rem 1rem; /* p-2 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 50;
+  font-family: Arial, sans-serif;
+}
+
+#accountStatus {
+  /* just normal text */
+}
+
+#headerSticker .flex {
+  display: flex;
+  gap: 1rem; /* space-x-4 approx */
+  font-size: 0.875rem; /* text-sm */
+}
+
+#headerSticker a {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#headerSticker a:hover {
+  text-decoration: underline;
+}
+</style></head>
+  <body>
 <!-- header.html -->
 <div id="headerSticker" class="sticky top-0 bg-gray-800 text-white p-2 flex justify-between items-center z-50">
   <div id="accountStatus">Not logged in</div>
