@@ -1,155 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FMACX Marketplace - Login</title>
-    <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/umd/uuidv4.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/validator@13.9.0/validator.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lodash/lodash.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FMACX Marketplace - Login</title>
+  <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/umd/uuidv4.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/validator@13.9.0/validator.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lodash/lodash.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 </head>
 <body class="bg-gray-100">
-    <!-- Header Sticker -->
-    <div id="headerSticker" class="sticky top-0 bg-gray-800 text-white p-2 flex justify-between items-center">
-        <div id="accountStatus">Not logged in</div>
-        <div class="flex space-x-4">
-            <a href="#" onclick="viewAccount()">Manage Account</a>
-            <a href="#" onclick="viewCart()">Cart</a>
-            <a href="#" onclick="viewOrders()">Your Orders</a>
-            <a href="#" onclick="trackOrders()">Track Orders</a>
-            <a href="#" onclick="login()">Login</a>
-        </div>
+
+  <!-- Header Sticker -->
+  <div id="headerSticker" class="sticky top-0 bg-gray-800 text-white p-2 flex justify-between items-center z-50">
+    <div id="accountStatus">Not logged in</div>
+    <div class="flex space-x-4 text-sm">
+      <a href="#" onclick="viewAccount()">Manage Account</a>
+      <a href="#" onclick="viewCart()">Cart</a>
+      <a href="#" onclick="viewOrders()">Your Orders</a>
+      <a href="#" onclick="trackOrders()">Track Orders</a>
+      <a href="#">Login</a>
     </div>
+  </div>
 
-    <!-- Login Form -->
-    <div class="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
-        <h2 class="text-2xl font-semibold text-center">Login</h2>
-        
-        <form id="loginForm" class="space-y-6 mt-6">
-            <!-- Username or Email -->
-            <div>
-                <label for="username" class="block text-sm font-medium text-gray-700">Username or Email</label>
-                <input type="text" id="username" class="mt-1 p-2 w-full border border-gray-300 rounded-md" placeholder="Enter your username or email" required>
-            </div>
+  <!-- Login Box -->
+  <div class="max-w-lg mx-auto mt-10 p-6 bg-white shadow-xl rounded-lg">
+    <h2 class="text-2xl font-bold text-center mb-6">Welcome to FMACX</h2>
 
-            <!-- Phone Number with Country Code -->
-            <div>
-                <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
-                <div class="flex items-center">
-                    <select id="countryCode" class="p-2 border border-gray-300 rounded-l-md">
-                        <option value="+91">+91 (India)</option>
-                        <option value="+1">+1 (USA)</option>
-                        <option value="+44">+44 (UK)</option>
-                        <option value="+61">+61 (Australia)</option>
-                        <!-- Add more countries here -->
-                    </select>
-                    <input type="tel" id="phoneNumber" class="mt-1 p-2 w-full border border-gray-300 rounded-r-md" placeholder="Enter your phone number" required>
-                </div>
-            </div>
+    <form id="loginForm" class="space-y-5">
+      <!-- Username or Email -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Username or Email</label>
+        <input type="text" id="username" placeholder="Enter your username or email" class="mt-1 p-2 w-full border border-gray-300 rounded-md" required>
+      </div>
 
-            <!-- Password -->
-            <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                <input type="password" id="password" class="mt-1 p-2 w-full border border-gray-300 rounded-md" placeholder="Enter your password" required>
-            </div>
-
-            <!-- Error Message -->
-            <div id="errorMessage" class="text-red-600 text-sm hidden">Invalid credentials or account not found.</div>
-
-            <!-- Submit Button -->
-            <div class="flex justify-center">
-                <button type="submit" id="submitBtn" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">Login</button>
-            </div>
-        </form>
-
-        <!-- Account Recovery Link -->
-        <div class="text-center mt-4">
-            <a href="#" onclick="recoverPassword()">Forgot Password?</a>
+      <!-- Phone Number with Country Code -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Phone Number</label>
+        <div class="flex items-center">
+          <select id="countryCode" class="p-2 border border-gray-300 rounded-l-md">
+            <option value="+91">+91 (India)</option>
+            <option value="+1">+1 (USA)</option>
+            <option value="+44">+44 (UK)</option>
+            <option value="+61">+61 (Australia)</option>
+            <!-- More country codes can be added -->
+          </select>
+          <input type="tel" id="phoneNumber" placeholder="Phone number" class="p-2 w-full border border-gray-300 rounded-r-md" required>
         </div>
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label class="block text-sm font-medium text-gray-700">Password</label>
+        <input type="password" id="password" placeholder="Enter password" class="mt-1 p-2 w-full border border-gray-300 rounded-md" required>
+      </div>
+
+      <!-- Error Message -->
+      <div id="errorMessage" class="text-red-600 text-sm hidden">Invalid credentials.</div>
+
+      <!-- Submit -->
+      <div class="flex justify-center">
+        <button type="submit" class="bg-blue-600 text-white py-2 px-6 rounded-md hover:bg-blue-700">Login</button>
+      </div>
+    </form>
+
+    <!-- Extra Links -->
+    <div class="mt-6 text-center text-sm text-gray-600 space-y-2">
+      <button onclick="signup()" class="underline">Create New Account</button><br>
+      <button onclick="recoverPassword()" class="underline">Forgot Password?</button><br>
+      <button onclick="recoverUsername()" class="underline">Forgot Username?</button><br>
+      <button onclick="goBack()" class="text-blue-600 underline mt-2">Go Back to Previous Page</button>
     </div>
+  </div>
 
-    <script>
-        // Initialize Gun.js and SEA for account-related operations
-        const gun = Gun();
-        const SEA = Gun.SEA;
+  <script>
+    const gun = Gun();
+    const SEA = Gun.SEA;
 
-        // Function to handle login
-        document.getElementById("loginForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-            
-            const username = document.getElementById("username").value;
-            const phoneNumber = document.getElementById("phoneNumber").value;
-            const countryCode = document.getElementById("countryCode").value;
-            const password = document.getElementById("password").value;
+    document.getElementById("loginForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
 
-            // Validate inputs (example)
-            if (validator.isEmpty(username) || validator.isEmpty(password)) {
-                document.getElementById("errorMessage").classList.remove("hidden");
-                return;
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      gun.get("users").get(username).once(async (data) => {
+        if (data && data.password) {
+          try {
+            const decrypted = await SEA.decrypt(data.password, password);
+            if (decrypted) {
+              document.getElementById("headerSticker").querySelector("#accountStatus").textContent = `Logged in as ${username}`;
+              window.location.href = "index.html";
+            } else {
+              document.getElementById("errorMessage").classList.remove("hidden");
             }
-
-            // Construct account ID using username or phone number
-            let accountID = username; // or use phoneNumber if phone login is used
-
-            // Attempt to log in using Gun.js & SEA
-            gun.get("users").get(accountID).once(async (data) => {
-                if (data && data.password) {
-                    try {
-                        const decryptedPassword = await SEA.decrypt(data.password, password);
-                        if (decryptedPassword) {
-                            // Successful login
-                            document.getElementById("headerSticker").querySelector("#accountStatus").textContent = `Logged in as ${accountID}`;
-                            window.location.href = 'index.html'; // Redirect to main page
-                        } else {
-                            document.getElementById("errorMessage").classList.remove("hidden");
-                        }
-                    } catch (error) {
-                        document.getElementById("errorMessage").classList.remove("hidden");
-                    }
-                } else {
-                    document.getElementById("errorMessage").classList.remove("hidden");
-                }
-            });
-        });
-
-        // Function to handle account recovery
-        function recoverPassword() {
-            const recoveryInfo = prompt("Enter your email or phone number to recover your password");
-            if (recoveryInfo) {
-                // Handle password recovery logic (send OTP, etc.)
-                alert('Password recovery process initiated.');
-            }
+          } catch {
+            document.getElementById("errorMessage").classList.remove("hidden");
+          }
+        } else {
+          document.getElementById("errorMessage").classList.remove("hidden");
         }
+      });
+    });
 
-        // Function to manage account settings
-        function viewAccount() {
-            // Logic to open account settings
-            alert('Managing account settings...');
-        }
+    function signup() {
+      window.location.href = "signup.html";
+    }
 
-        // Function to manage cart
-        function viewCart() {
-            // Cart page or action
-            alert('Viewing cart...');
-        }
+    function recoverPassword() {
+      const info = prompt("Enter your email or phone number to recover password:");
+      if (info) alert("Recovery link sent. (Simulated)");
+    }
 
-        // Function to view orders
-        function viewOrders() {
-            // Orders page or action
-            alert('Viewing your orders...');
-        }
+    function recoverUsername() {
+      const info = prompt("Enter your email or phone number to recover username:");
+      if (info) alert("We’ve sent your username. (Simulated)");
+    }
 
-        // Function to track orders
-        function trackOrders() {
-            // Tracking orders page or action
-            alert('Tracking orders...');
-        }
-    </script>
+    function goBack() {
+      window.history.back();
+    }
+
+    function viewAccount() {
+      alert("Manage Account");
+    }
+
+    function viewCart() {
+      alert("Viewing Cart");
+    }
+
+    function viewOrders() {
+      alert("Your Orders");
+    }
+
+    function trackOrders() {
+      alert("Track Orders");
+    }
+  </script>
 </body>
 </html>
