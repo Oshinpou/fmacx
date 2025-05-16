@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Written Sections</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .written-toggle-bar {
+      display: flex;
+      gap: 10px;
+      padding: 10px;
+    }
+    .written-icon {
+      background: #000;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .written-icon:hover {
+      background: #333;
+    }
+    .written-section {
+      display: none;
+      padding: 15px;
+      margin-top: 10px;
+      background: #f5f5f5;
+      border-left: 5px solid #000;
+    }
+    .written-section.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ICON TOGGLE BAR -->
+<div class="written-toggle-bar">
+  <button class="written-icon" id="privacy-btn" title="Privacy Policy"><i class="fas fa-user-shield"></i></button>
+  <button class="written-icon" id="returns-btn" title="Returns & Refunds"><i class="fas fa-undo-alt"></i></button>
+  <button class="written-icon" id="terms-btn" title="Terms & Conditions"><i class="fas fa-file-contract"></i></button>
+  <button class="written-icon" id="about-btn" title="About"><i class="fas fa-info-circle"></i></button>
+  <button class="written-icon" id="faq-btn" title="FAQ"><i class="fas fa-question-circle"></i></button>
+</div>
+
+<!-- SECTIONS -->
+
+<div id="privacy-section" class="written-section">
+  <h3>Privacy Policy</h3>
+  <p>We respect your privacy and protect all your personal data under strict confidentiality. No third-party sharing without consent.</p>
+</div>
+
+<div id="returns-section" class="written-section">
+  <h3>Returns & Refunds</h3>
+  <p>Products can be returned within 3 days. Refunds are processed within 3 days after return confirmation.</p>
+</div>
+
+<div id="terms-section" class="written-section">
+  <h3>Terms & Conditions</h3>
+  <p>By using our services, you agree to our terms including legal use, no duplication, and fair interaction with our platform.</p>
+</div>
+
+<div id="about-section" class="written-section">
+  <h3>About</h3>
+  <p>We are a luxury marketplace for unique, high-quality goods across cosmetics, furniture, fashion, and more.</p>
+</div>
+
+<div id="faq-section" class="written-section">
+  <h3>Frequently Asked Questions</h3>
+  <p><strong>Q:</strong> How long does shipping take?<br><strong>A:</strong> 30–60 days.<br><br>
+     <strong>Q:</strong> Can I cancel my order?<br><strong>A:</strong> Yes, within 3 days.</p>
+</div>
+
+<!-- SCRIPT -->
+<script>
+  const sections = {
+    'privacy-btn': 'privacy-section',
+    'returns-btn': 'returns-section',
+    'terms-btn': 'terms-section',
+    'about-btn': 'about-section',
+    'faq-btn': 'faq-section'
+  };
+
+  for (let btnId in sections) {
+    document.getElementById(btnId).onclick = () => {
+      for (let secId of Object.values(sections)) {
+        document.getElementById(secId).classList.remove('active');
+      }
+      document.getElementById(sections[btnId]).classList.toggle('active');
+    };
+  }
+</script>
+
+</body>
+</html>
