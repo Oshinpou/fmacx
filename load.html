@@ -1,0 +1,70 @@
+<html><body>
+<div id="product-loader" style="padding: 20px;">
+  <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+    <button id="load-products-btn" title="Load Products" style="padding: 10px 20px;">📦</button>
+    <button id="load-more-btn" title="Load More" style="padding: 10px 20px;">➕</button>
+    <button onclick="history.back()" title="Back" style="padding: 10px 20px;">↩️</button>
+  </div>
+
+  <div id="product-list" style="margin-top: 20px; display: grid; gap: 20px; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
+    <!-- Products will be loaded here -->
+  </div>
+</div>
+
+<script>
+  let productsLoaded = 0;
+  const itemsPerLoad = 6;
+
+  function getStoredProducts() {
+    const data = localStorage.getItem("fmacxproducts");
+    try {
+      return JSON.parse(data) || [];
+    } catch {
+      return [];
+    }
+  }
+
+  function createProductCard(product) {
+    const card = document.createElement("div");
+    card.style.border = "1px solid #ccc";
+    card.style.borderRadius = "12px";
+    card.style.padding = "15px";
+    card.style.background = "#fff";
+    card.style.boxShadow = "0 4px 10px rgba(0,0,0,0.1)";
+    card.innerHTML = `
+      <h3 style="font-size: 16px; margin-bottom: 10px;">${product.name}</h3>
+      <p style="font-size: 14px;">₹${product.price}</p>
+      <a href="${product.link}" style="display: inline-block; margin-top: 10px; color: #007BFF;">View Product</a>
+    `;
+    return card;
+  }
+
+  function loadProducts(initial = false) {
+    const allProducts = getStoredProducts();
+    const container = document.getElementById("product-list");
+
+    const toLoad = allProducts.slice(productsLoaded, productsLoaded + itemsPerLoad);
+    toLoad.forEach(product => container.appendChild(createProductCard(product)));
+    productsLoaded += toLoad.length;
+
+    if (productsLoaded >= allProducts.length) {
+      document.getElementById("load-more-btn").disabled = true;
+    }
+
+    if (initial && allProducts.length === 0) {
+      container.innerHTML = "<p>No products available.</p>";
+    }
+  }
+
+  document.getElementById("load-products-btn").onclick = () => {
+    document.getElementById("product-list").innerHTML = "";
+    productsLoaded = 0;
+    document.getElementById("load-more-btn").disabled = false;
+    loadProducts(true);
+  };
+
+  document.getElementById("load-more-btn").onclick = () => loadProducts();
+</script>
+
+</body>
+</html>
