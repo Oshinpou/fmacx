@@ -1,40 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>FMACX Login</title>
-  <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/moment/min/moment.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/umd/uuidv4.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://cdn.jsdelivr.net/npm/validator@13.9.0/validator.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="account.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FMACX Marketplace - Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/gun/gun.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gun/sea.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/umd/uuidv4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment-timezone/builds/moment-timezone-with-data.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/validator@13.9.0/validator.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lodash/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="bg-white text-gray-900">
-  <div class="max-w-md mx-auto mt-10 p-5 border shadow-lg rounded-lg space-y-6">
-    <h2 class="text-2xl font-bold">Create Account</h2>
-    <input type="text" id="username" placeholder="Username" class="w-full border p-2" />
-    <input type="email" id="email" placeholder="Email" class="w-full border p-2" />
-    <input type="text" id="phone" placeholder="+91XXXXXXXXXX" class="w-full border p-2" />
-    <input type="password" id="password" placeholder="Password" class="w-full border p-2" />
-    <input type="password" id="confirm" placeholder="Confirm Password" class="w-full border p-2" />
-    <button onclick="createAccount()" class="w-full bg-black text-white p-2">Create Account</button>
+<body class="bg-gray-100">
+    <!-- Header Sticker -->
+    <div id="headerSticker" class="sticky top-0 bg-gray-800 text-white p-2 flex justify-between items-center">
+        <div id="accountStatus">Not logged in</div>
+        <div class="flex space-x-4">
+            <a href="#" onclick="viewAccount()">Manage Account</a>
+            <a href="#" onclick="viewCart()">Cart</a>
+            <a href="#" onclick="viewOrders()">Your Orders</a>
+            <a href="#" onclick="trackOrders()">Track Orders</a>
+            <a href="#" onclick="login()">Login</a>
+        </div>
+    </div>
 
-    <h2 class="text-xl font-semibold">Login</h2>
-    <input type="text" id="loginUser" placeholder="Username" class="w-full border p-2" />
-    <input type="password" id="loginPass" placeholder="Password" class="w-full border p-2" />
-    <button onclick="loginAccount()" class="w-full bg-green-600 text-white p-2">Login</button>
+    <!-- Login Form -->
+    <div class="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+        <h2 class="text-2xl font-semibold text-center">Login</h2>
+        
+        <form id="loginForm" class="space-y-6 mt-6">
+            <!-- Username or Email -->
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-700">Username or Email</label>
+                <input type="text" id="username" class="mt-1 p-2 w-full border border-gray-300 rounded-md" placeholder="Enter your username or email" required>
+            </div>
 
-    <h2 class="text-xl font-semibold">Recover Password</h2>
-    <input type="text" id="recoverUser" placeholder="Username" class="w-full border p-2" />
-    <input type="email" id="recoverEmail" placeholder="Email" class="w-full border p-2" />
-    <input type="text" id="recoverPhone" placeholder="Phone" class="w-full border p-2" />
-    <button onclick="recoverPassword()" class="w-full bg-yellow-500 text-white p-2">Recover Password</button>
+            <!-- Phone Number with Country Code -->
+            <div>
+                <label for="phoneNumber" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                <div class="flex items-center">
+                    <select id="countryCode" class="p-2 border border-gray-300 rounded-l-md">
+                        <option value="+91">+91 (India)</option>
+                        <option value="+1">+1 (USA)</option>
+                        <option value="+44">+44 (UK)</option>
+                        <option value="+61">+61 (Australia)</option>
+                        <!-- Add more countries here -->
+                    </select>
+                    <input type="tel" id="phoneNumber" class="mt-1 p-2 w-full border border-gray-300 rounded-r-md" placeholder="Enter your phone number" required>
+                </div>
+            </div>
 
-    <a href="index.html" class="block text-center mt-4 text-blue-600">Go Back to Website</a>
-  </div>
+            <!-- Password -->
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="password" class="mt-1 p-2 w-full border border-gray-300 rounded-md" placeholder="Enter your password" required>
+            </div>
+
+            <!-- Error Message -->
+            <div id="errorMessage" class="text-red-600 text-sm hidden">Invalid credentials or account not found.</div>
+
+            <!-- Submit Button -->
+            <div class="flex justify-center">
+                <button type="submit" id="submitBtn" class="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">Login</button>
+            </div>
+        </form>
+
+        <!-- Account Recovery Link -->
+        <div class="text-center mt-4">
+            <a href="#" onclick="recoverPassword()">Forgot Password?</a>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Gun.js and SEA for account-related operations
+        const gun = Gun();
+        const SEA = Gun.SEA;
+
+        // Function to handle login
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const username = document.getElementById("username").value;
+            const phoneNumber = document.getElementById("phoneNumber").value;
+            const countryCode = document.getElementById("countryCode").value;
+            const password = document.getElementById("password").value;
+
+            // Validate inputs (example)
+            if (validator.isEmpty(username) || validator.isEmpty(password)) {
+                document.getElementById("errorMessage").classList.remove("hidden");
+                return;
+            }
+
+            // Construct account ID using username or phone number
+            let accountID = username; // or use phoneNumber if phone login is used
+
+            // Attempt to log in using Gun.js & SEA
+            gun.get("users").get(accountID).once(async (data) => {
+                if (data && data.password) {
+                    try {
+                        const decryptedPassword = await SEA.decrypt(data.password, password);
+                        if (decryptedPassword) {
+                            // Successful login
+                            document.getElementById("headerSticker").querySelector("#accountStatus").textContent = `Logged in as ${accountID}`;
+                            window.location.href = 'index.html'; // Redirect to main page
+                        } else {
+                            document.getElementById("errorMessage").classList.remove("hidden");
+                        }
+                    } catch (error) {
+                        document.getElementById("errorMessage").classList.remove("hidden");
+                    }
+                } else {
+                    document.getElementById("errorMessage").classList.remove("hidden");
+                }
+            });
+        });
+
+        // Function to handle account recovery
+        function recoverPassword() {
+            const recoveryInfo = prompt("Enter your email or phone number to recover your password");
+            if (recoveryInfo) {
+                // Handle password recovery logic (send OTP, etc.)
+                alert('Password recovery process initiated.');
+            }
+        }
+
+        // Function to manage account settings
+        function viewAccount() {
+            // Logic to open account settings
+            alert('Managing account settings...');
+        }
+
+        // Function to manage cart
+        function viewCart() {
+            // Cart page or action
+            alert('Viewing cart...');
+        }
+
+        // Function to view orders
+        function viewOrders() {
+            // Orders page or action
+            alert('Viewing your orders...');
+        }
+
+        // Function to track orders
+        function trackOrders() {
+            // Tracking orders page or action
+            alert('Tracking orders...');
+        }
+    </script>
 </body>
 </html>
