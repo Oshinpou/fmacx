@@ -14,162 +14,56 @@
   <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap');
 
-/* Root Variables */
-:root {
-  --lux-bg: linear-gradient(to bottom right, #0f0f0f, #1c1c1c);
-  --gold: #ffd700;
-  --glass: rgba(255, 255, 255, 0.05);
-  --glow: rgba(255, 255, 255, 0.08);
-  --border-glass: rgba(255, 255, 255, 0.12);
-  --soft-shadow: 0 0 80px rgba(255, 215, 0, 0.08);
-  --font: 'Outfit', sans-serif;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: var(--font);
-}
-
-body {
-  background: var(--lux-bg);
-  color: #fff;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  position: relative;
-}
-
-/* BACKGROUND EFFECTS */
-body::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 215, 0, 0.12), transparent 60%),
-              radial-gradient(circle at 70% 70%, rgba(0, 255, 255, 0.1), transparent 60%);
-  z-index: -3;
-  animation: bgShift 15s infinite alternate;
-}
-
-@keyframes bgShift {
-  0% { background-position: 0% 0%; }
-  100% { background-position: 100% 100%; }
-}
-
-/* GLASS CARD */
+  /* Blue Edgy Glass Container with Sparkle */
 .glass-container {
-  background: var(--glass);
-  border: 1px solid var(--border-glass);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
+  background: rgba(10, 25, 50, 0.25); /* transparent blue glass */
+  border: 2px solid rgba(0, 140, 255, 0.7); /* bright blue edgy border */
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
   border-radius: 2rem;
   padding: 3rem;
   max-width: 500px;
   width: 90%;
-  box-shadow: var(--soft-shadow);
+  box-shadow: 0 0 30px rgba(0, 140, 255, 0.4), 0 0 40px rgba(0, 200, 255, 0.6);
+  position: relative;
+  overflow: hidden;
   transition: all 0.4s ease;
 }
 
-/* Title */
-.glass-container h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--gold);
-  text-align: center;
-  margin-bottom: 2rem;
-  text-shadow: 0 0 20px rgba(255,215,0,0.3);
+/* Sparkle Effect */
+.glass-container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  background-image: radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.8) 2px, transparent 5px),
+                    radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.6) 1.5px, transparent 4px),
+                    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.7) 2px, transparent 6px);
+  background-repeat: repeat;
+  background-size: 100px 100px;
+  animation: sparkleMove 12s linear infinite;
+  z-index: 1;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 4px rgba(0, 140, 255, 0.8));
 }
 
-/* Input Fields */
-input,
-select {
-  width: 100%;
-  padding: 1rem;
-  background: var(--glow);
-  border: 1px solid var(--border-glass);
-  border-radius: 1rem;
-  color: #fff;
-  font-size: 1rem;
-  margin-bottom: 1.5rem;
-  transition: 0.3s;
-}
-
-input:focus,
-select:focus {
-  outline: none;
-  border-color: var(--gold);
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 10px var(--gold);
-}
-
-/* Buttons */
-button,
-.btn {
-  width: 100%;
-  padding: 1rem;
-  border: none;
-  background: linear-gradient(to right, #ffd700, #ffb300);
-  color: #000;
-  font-weight: bold;
-  font-size: 1.1rem;
-  border-radius: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-}
-
-button:hover,
-.btn:hover {
-  transform: scale(1.03);
-  background: linear-gradient(to right, #ffb300, #ffd700);
-  box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
-}
-
-/* Error Message */
-#errorMessage {
-  background: rgba(255, 0, 0, 0.15);
-  padding: 0.8rem;
-  border-radius: 0.8rem;
-  text-align: center;
-  color: #ff4d4d;
-  margin-top: 1rem;
-}
-
-/* Link Button */
-button.underline {
-  background: none;
-  color: var(--gold);
-  border: none;
-  font-size: 0.9rem;
-  text-decoration: underline;
-  margin-top: 1rem;
-  cursor: pointer;
-}
-
-/* Form Section */
-#forms-container h2 {
-  color: var(--gold);
-  text-shadow: 0 0 8px rgba(255, 215, 0, 0.2);
-}
-
-#forms-container .input {
-  margin-top: 0.5rem;
-  margin-bottom: 1rem;
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-  .glass-container {
-    padding: 2rem 1.5rem;
+@keyframes sparkleMove {
+  from {
+    background-position: 0 0, 50px 50px, 25px 25px;
   }
-  .glass-container h2 {
-    font-size: 2rem;
+  to {
+    background-position: 100px 100px, 150px 150px, 125px 125px;
   }
+}
+
+/* Make inner content above sparkles */
+.glass-container > * {
+  position: relative;
+  z-index: 2;
 }
 </style>
 </head>
